@@ -1,54 +1,24 @@
 <script>
-import { mapActions, mapState } from "pinia";
+import { mapActions, mapWritableState } from "pinia";
 import { useMusicStore } from "../stores/music";
 import NavigationBar from "../components/NavigationBar.vue";
 import FirstCard from "../components/FirstCard.vue";
+import PaginationComp from "../components/PaginationComp.vue";
 
 export default {
   computed: {
-    ...mapState(useMusicStore, ["musics"]),
+    ...mapWritableState(useMusicStore, ["musics", "pageNow"]),
   },
   created() {
-    this.musicList();
+    this.musicList(this.$route.query);
   },
   methods: {
     ...mapActions(useMusicStore, ["musicList"]),
-
-    // addPostForm() {
-    //   this.$emit("addPostForm");
-    // },
-
-    // addPostSubmitHandler(data) {
-    //   this.$emit("addPostSubmit", data);
-    // },
-
-    // editPostForm(id) {
-    //   this.$emit("editPostForm", id);
-    // },
-
-    // editPostSubmitHandler(data) {
-    //   this.$emit("editPostSubmit", data);
-    // },
-
-    // statusChange(data) {
-    //   this.$emit("statusChange", data);
-    // },
-
-    // historyListTable() {
-    //   this.$emit("historyListTable");
-    // },
-
-    // postListTable() {
-    //   this.$emit("postListTable");
-    // },
-
-    // logoutUser() {
-    //   this.$emit("logoutUser");
-    // },
   },
   components: {
     NavigationBar,
     FirstCard,
+    PaginationComp,
   },
 };
 </script>
@@ -70,7 +40,7 @@ export default {
 
   <!-- pagination -->
   <!-- <PaginatePost :count="count" /> -->
-
+  <PaginationComp :page="pageNow" />
   <!-- end content -->
 </template>
 

@@ -28,7 +28,9 @@ export default {
     <img :src="music.imageUrl" class="card-img-top" alt="blog image" />
     <div class="card-body">
       <h5 class="card-title text-center mt-4">{{ music.name }}</h5>
-      <div class="d-flex justify-content-between button-div">
+    </div>
+    <div class="card-foot mb-2">
+      <div class="d-flex justify-content-evenly button-div">
         <a class="btn btn-success" :href="music.link" target="_blank"
           >Play in Spotify</a
         >
@@ -41,7 +43,7 @@ export default {
 </template>
 
 <style scoped>
-.button-div {
-  margin-top: 100px;
+.card {
+  height: 550px;
 }
 </style>

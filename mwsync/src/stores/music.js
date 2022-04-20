@@ -11,17 +11,30 @@ export const useMusicStore = defineStore({
       musics: [],
       favoriteMusics: [],
       weather: "",
+      pageNow: 0,
     };
   },
 
   getters: {},
 
   actions: {
-    async musicList() {
+    async musicList(query) {
       try {
+        window.scrollTo(0, 0);
+        const { page } = query;
+
+        if (page) {
+          this.pageNow = parseInt(page);
+        } else {
+          this.pageNow = 0;
+        }
+
         const data = await axios.get(`${baseUrl}`, {
           headers: {
             access_token: localStorage.access_token,
+          },
+          params: {
+            page,
           },
         });
 
@@ -29,6 +42,7 @@ export const useMusicStore = defineStore({
 
         this.weather = data.data.weather;
 
+        this.router.push("/home");
         console.log(data);
       } catch (err) {
         Swal.fire({

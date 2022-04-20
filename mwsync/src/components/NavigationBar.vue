@@ -11,7 +11,7 @@ export default {
   },
   computed: {
     ...mapWritableState(useUserStore, ["isLogin"]),
-    ...mapState(useMusicStore, ["weather"]),
+    ...mapWritableState(useMusicStore, ["weather", "pageNow"]),
   },
   created() {
     if (localStorage.access_token) {
@@ -19,7 +19,7 @@ export default {
     }
   },
   methods: {
-    // ...mapActions(usePostStore, ["listPost"]),
+    ...mapActions(useMusicStore, ["musicList"]),
     logoutSubmitHandler() {
       localStorage.clear();
       Swal.fire({
@@ -29,6 +29,10 @@ export default {
       });
       this.$router.push("/login");
     },
+
+    resetPage() {
+      this.musicList({ page: 1 });
+    },
   },
 };
 </script>
@@ -37,7 +41,7 @@ export default {
   <nav class="navbar navbar-expand-lg navbar-light bg-lightv mt-2 mb-4 mx-4">
     <div class="container-fluid">
       <router-link class="navbar-brand" to="/home"
-        ><img src="../assets/mwsync-logo.png"
+        ><img src="../assets/mwsync-logo.png" @click.prevent="resetPage()"
       /></router-link>
       <button
         class="navbar-toggler"
@@ -50,7 +54,12 @@ export default {
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <router-link class="nav-link active" to="/home">Home</router-link>
+            <router-link
+              class="nav-link active"
+              to="/home"
+              @click.prevent="resetPage()"
+              >Home</router-link
+            >
           </li>
           <li class="nav-item me-4">
             <router-link class="nav-link" to="/favorites"
