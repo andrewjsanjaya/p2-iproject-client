@@ -17,7 +17,6 @@ export const useUserStore = defineStore({
     async loginSubmitHandler(userLogin) {
       try {
         const user = await axios.post(`${baseUrl}/login`, userLogin);
-        console.log(user);
 
         this.isLogin = true;
         localStorage.setItem("access_token", user.data.access_token);
@@ -50,14 +49,61 @@ export const useUserStore = defineStore({
           icon: "success",
         });
 
-        this.router.push("/verify");
+        this.router.push("/login");
       } catch (err) {
-        console.log(err.response);
         Swal.fire({
           title: err.response.data.error.message[0],
           icon: "warning",
         });
         console.log(err);
+      }
+    },
+
+    async verifySubmitHandler(verificationCode) {
+      try {
+        const user = await axios.patch(
+          `${baseUrl}/verification`,
+          verificationCode,
+          {
+            headers: {
+              access_token: localStorage.access_token,
+            },
+          }
+        );
+        this.isLogin = true;
+        localStorage.setItem("access_token", user.data.access_token);
+
+        Swal.fire({
+          title: "Your account has been verified successfully",
+          icon: "success",
+        });
+
+        this.router.push("/home");
+      } catch (err) {
+        Swal.fire({
+          title: err.response.data.error.message,
+          icon: "warning",
+        });
+      }
+    },
+
+    async getVerificationCode() {
+      try {
+        const code = await axios.get(`${baseUrl}/verification`, {
+          headers: {
+            access_token: localStorage.access_token,
+          },
+        });
+
+        Swal.fire({
+          title: "Check your email",
+          icon: "success",
+        });
+      } catch (err) {
+        Swal.fire({
+          title: err.response.data.error.message,
+          icon: "warning",
+        });
       }
     },
   },
