@@ -1,6 +1,7 @@
 <script>
 import { mapActions } from "pinia";
 import { useUserStore } from "../stores/user";
+import NavigationBar from "../components/NavigationBar.vue";
 
 export default {
   data() {
@@ -11,10 +12,15 @@ export default {
   methods: {
     ...mapActions(useUserStore, ["verifySubmitHandler", "getVerificationCode"]),
   },
+  components: {
+    NavigationBar,
+  },
 };
 </script>
 
 <template>
+  <NavigationBar />
+
   <div class="container-login">
     <form class="login-form card" style="width: 18rem">
       <img src="../assets/images-login.jpg" alt="login-image" />

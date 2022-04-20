@@ -71,14 +71,14 @@ export const useUserStore = defineStore({
           }
         );
         this.isLogin = true;
-        localStorage.setItem("access_token", user.data.access_token);
+        localStorage.setItem("status", "verified");
+
+        this.router.push("/home");
 
         Swal.fire({
           title: "Your account has been verified successfully",
           icon: "success",
         });
-
-        this.router.push("/home");
       } catch (err) {
         Swal.fire({
           title: err.response.data.error.message,
