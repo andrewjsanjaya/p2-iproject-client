@@ -38,7 +38,7 @@ export default {
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-lightv mt-2 mb-4 mx-4">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark shadow-5-strong">
     <div class="container-fluid">
       <router-link class="navbar-brand" to="/home"
         ><img src="../assets/mwsync-logo.png" @click.prevent="resetPage()"
@@ -81,7 +81,7 @@ export default {
         >
         <a
           v-if="isLogin"
-          class="btn btn-outline-danger ms-2"
+          class="btn btn-danger ms-2"
           @click.prevent="logoutSubmitHandler"
           >Logout</a
         >
@@ -94,5 +94,9 @@ export default {
 img {
   width: 40px;
   height: 40px;
+}
+
+nav {
+  overflow: hidden !important;
 }
 </style>
