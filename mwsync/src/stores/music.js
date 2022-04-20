@@ -29,21 +29,18 @@ export const useMusicStore = defineStore({
           this.pageNow = 0;
         }
 
-        const data = await axios.get(`${baseUrl}`, {
-          headers: {
-            access_token: localStorage.access_token,
-          },
-          params: {
-            page,
-          },
-        });
+        // const data = await axios.get(`${baseUrl}`, {
+        //   headers: {
+        //     access_token: localStorage.access_token,
+        //   },
+        //   params: {
+        //     page,
+        //   },
+        // });
 
-        this.musics = data.data.music.playlists;
+        // this.musics = data.data.music.playlists;
 
-        this.weather = data.data.weather;
-
-        this.router.push("/home");
-        console.log(data);
+        // this.weather = data.data.weather;
       } catch (err) {
         Swal.fire({
           title: err.response.data.error.message,

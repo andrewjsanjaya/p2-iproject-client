@@ -44,20 +44,21 @@ export default {
           <input
             type="text"
             class="form-control"
-            placeholder="username / email"
+            placeholder="Your Verification Code"
             v-model="verificationCode"
           />
-
-          <input
-            type="submit"
-            value="Get Verification Code"
-            class="button-get-code btn button-hover mb-4 mt-2"
-            @click.prevent="
-              verifySubmitHandler({
-                verificationCode,
-              })
-            "
-          />
+          <div class="text-center mt-4">
+            <input
+              type="submit"
+              value="Verify"
+              class="button-verify btn button-hover mb-4 mt-2"
+              @click.prevent="
+                verifySubmitHandler({
+                  verificationCode,
+                })
+              "
+            />
+          </div>
         </div>
       </div>
     </form>
@@ -77,9 +78,21 @@ p {
   color: #ffffff;
 }
 
-.container-login {
+/* .background {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url(@/assets/images1.jpg);
+  height: 100vh;
+  width: 100%;
+  background-position: 50% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+} */
+.container-login {
+  display: flex;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url(@/assets/images1.jpg);
+  justify-content: center;
+  align-items: center;
   height: 100vh;
   width: 100%;
   background-position: 50% 50%;
@@ -95,7 +108,7 @@ p {
   background: rgba(0, 0, 0, 0.5);
 }
 
-.button-login {
+.button-verify {
   width: 200px;
   border-radius: 20px;
   color: #000000;

@@ -99,6 +99,9 @@ h3 {
 .container-register {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url(@/assets/images1.jpg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
   width: 100%;
   background-position: 50% 50%;
