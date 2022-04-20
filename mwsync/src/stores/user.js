@@ -40,5 +40,25 @@ export const useUserStore = defineStore({
         });
       }
     },
+
+    async registerSubmitHandler(userRegister) {
+      try {
+        const user = await axios.post(`${baseUrl}/register`, userRegister);
+
+        Swal.fire({
+          title: "Register Success",
+          icon: "success",
+        });
+
+        this.router.push("/verify");
+      } catch (err) {
+        console.log(err.response);
+        Swal.fire({
+          title: err.response.data.error.message[0],
+          icon: "warning",
+        });
+        console.log(err);
+      }
+    },
   },
 });
