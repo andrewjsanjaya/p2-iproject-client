@@ -45,5 +45,7 @@ export default {
 <style scoped>
 .card {
   height: 550px;
+  background-color: rgba(254, 254, 255, 0.7);
+  font-family: "Manrope", sans-serif;
 }
 </style>

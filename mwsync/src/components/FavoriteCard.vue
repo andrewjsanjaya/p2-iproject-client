@@ -22,11 +22,13 @@ export default {
 </script>
 
 <template>
-  <div class="card card-border-rounded mx-auto my-3" style="width: 24rem">
-    <img :src="music.imageUrl" class="card-img-top" alt="blog image" />
+  <div class="card text-center mx-4 my-3">
+    <div class="card-header">
+      <img :src="music.imageUrl" class="card-img-top" alt="blog image" />
+    </div>
     <div class="card-body">
-      <h5 class="card-title text-center mt-4">{{ music.title }}</h5>
-      <div class="d-flex justify-content-between button-div">
+      <h5 class="card-title">{{ music.title }}</h5>
+      <div class="text-center button-div">
         <a class="btn btn-success" :href="music.spotifyUrl" target="_blank"
           >Play in Spotify</a
         >
@@ -37,6 +39,21 @@ export default {
 
 <style scoped>
 .button-div {
-  margin-top: 100px;
+  margin-top: 20px;
+}
+
+img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+}
+
+h5 {
+  color: #ffffff;
+}
+
+.card {
+  font-family: "Manrope", sans-serif;
+  background-color: rgba(0, 0, 0, 0.7);
 }
 </style>

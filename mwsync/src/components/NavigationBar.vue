@@ -4,14 +4,9 @@ import { useMusicStore } from "../stores/music";
 import { mapActions, mapState, mapWritableState } from "pinia";
 
 export default {
-  data() {
-    return {
-      searchPost: "",
-    };
-  },
   computed: {
     ...mapWritableState(useUserStore, ["isLogin"]),
-    ...mapWritableState(useMusicStore, ["weather", "pageNow"]),
+    ...mapWritableState(useMusicStore, ["weather", "pageNow", "weatherSymbol"]),
   },
   created() {
     if (localStorage.access_token) {
@@ -52,7 +47,7 @@ export default {
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 pt-1">
           <li class="nav-item">
             <router-link
               class="nav-link active"
@@ -67,7 +62,15 @@ export default {
             >
           </li>
           <li>
-            <p class="nav-link" to="">{{ weather }}</p>
+            <img
+              src="../assets/sunny-day.png"
+              v-if="weatherSymbol === 'sunny'"
+            />
+            <img
+              src="../assets/rainny-day.png"
+              v-if="weatherSymbol === 'rain'"
+            />
+            <img src="../assets/snow-day.png" v-if="weatherSymbol === 'snow'" />
           </li>
         </ul>
         <router-link v-if="!isLogin" class="btn btn-outline-success" to="/login"
@@ -96,7 +99,7 @@ img {
   height: 40px;
 }
 
-nav {
-  overflow: hidden !important;
+.navbar {
+  background-color: rgba(22, 22, 22, 0.9);
 }
 </style>
