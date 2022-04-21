@@ -11,6 +11,7 @@ export const useMusicStore = defineStore({
       musics: [],
       favoriteMusics: [],
       weather: "",
+      weatherSymbol: "",
       pageNow: 0,
     };
   },
@@ -29,21 +30,37 @@ export const useMusicStore = defineStore({
           this.pageNow = 0;
         }
 
-        // const data = await axios.get(`${baseUrl}`, {
-        //   headers: {
-        //     access_token: localStorage.access_token,
-        //   },
-        //   params: {
-        //     page,
-        //   },
-        // });
+        const data = await axios.get(`${baseUrl}`, {
+          headers: {
+            access_token: localStorage.access_token,
+          },
+          params: {
+            page,
+          },
+        });
 
-        // this.musics = data.data.music.playlists;
+        this.musics = data.data.music.playlists;
 
-        // this.weather = data.data.weather;
+        this.weather = data.data.weather;
+
+        if (this.weather.includes("sunny") || this.weather.includes("cloudy")) {
+          this.weatherSymbol = "sunny";
+        } else if (
+          this.weather.includes("overcast") ||
+          this.weather.includes("mist") ||
+          this.weather.includes("rain") ||
+          this.weather.includes("thunder") ||
+          this.weather.includes("fog") ||
+          this.weather.includes("drizzle")
+        ) {
+          this.weatherSymbol = "rain";
+        } else {
+          this.weatherSymbol = "snow";
+        }
       } catch (err) {
+        console.log(err.response);
         Swal.fire({
-          title: err.response.data.error.message,
+          title: err.response,
           icon: "warning",
         });
       }

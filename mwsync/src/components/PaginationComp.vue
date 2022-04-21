@@ -46,3 +46,14 @@ export default {
     </ul>
   </nav>
 </template>
+
+<style scoped>
+* {
+  font-family: "Manrope", sans-serif;
+}
+
+.page-link {
+  background-color: rgba(255, 255, 255, 1);
+  color: #000000;
+}
+</style>
