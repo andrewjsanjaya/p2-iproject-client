@@ -58,7 +58,6 @@ export const useMusicStore = defineStore({
           this.weatherSymbol = "snow";
         }
       } catch (err) {
-        console.log(err.response);
         Swal.fire({
           title: err.response,
           icon: "warning",
@@ -105,7 +104,6 @@ export const useMusicStore = defineStore({
         });
 
         this.favoriteMusics = playlists.data;
-        console.log(playlists);
       } catch (err) {
         Swal.fire({
           title: err.response.data.error.message,
