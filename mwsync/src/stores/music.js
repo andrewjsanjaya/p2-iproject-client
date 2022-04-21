@@ -113,5 +113,25 @@ export const useMusicStore = defineStore({
         });
       }
     },
+
+    async deleteFavorite(title) {
+      try {
+        const playlists = await axios.delete(`${baseUrl}/favorite`, {
+          headers: {
+            access_token: localStorage.access_token,
+          },
+          params: {
+            title,
+          },
+        });
+
+        this.favoriteList();
+      } catch (err) {
+        Swal.fire({
+          title: err.response.data.error.message,
+          icon: "warning",
+        });
+      }
+    },
   },
 });
