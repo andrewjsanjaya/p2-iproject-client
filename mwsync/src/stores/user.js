@@ -55,7 +55,6 @@ export const useUserStore = defineStore({
           title: err.response.data.error.message[0],
           icon: "warning",
         });
-        console.log(err);
       }
     },
 
