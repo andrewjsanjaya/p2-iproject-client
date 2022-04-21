@@ -8,15 +8,7 @@ export default {
   },
   props: ["music"],
   methods: {
-    // ...mapActions(useMusicStore, ["addFavorite"]),
-    // addFavoriteSubmit() {
-    //   const data = {
-    //     title: this.music.name,
-    //     imageUrl: this.music.imageUrl,
-    //     spotifyUrl: this.music.link,
-    //   };
-    //   this.addFavorite(data);
-    // },
+    ...mapActions(useMusicStore, ["deleteFavorite"]),
   },
 };
 </script>
@@ -32,6 +24,13 @@ export default {
         <a class="btn btn-success" :href="music.spotifyUrl" target="_blank"
           >Play in Spotify</a
         >
+        <button
+          class="btn btn-danger ms-4"
+          @click.prevent="deleteFavorite(music.title)"
+          target="_blank"
+        >
+          🗑️
+        </button>
       </div>
     </div>
   </div>
